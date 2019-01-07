@@ -6,6 +6,7 @@ ALTER_TABLE = "ALTER TABLE {0}"
 ALTER_COLUMN = "ALTER COLUMN {0} drop NOT NULL"
 CMD = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3}(id) FROM stdin'"""
 DB_TRANSFER = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3} FROM stdin'"""
+UPDATE_SQL = """ UPDATE {0} SET {1} WHERE {2};"""
 
 
 class DataMigration:
@@ -47,6 +48,16 @@ class DataMigration:
         data_list.remove('id')
 
         return data_list
+
+    def get_col_string(self, data_list):
+        cols_string = False
+        for datum in data_list:
+            if data_list[0] != datum:
+                cols_string = "{0}, \n {1}".format(cols_string, datum)
+            else:
+                cols_string = "{0}".format(datum)
+
+        return cols_string
 
     def list_to_text(self, recs):
         data = ""
@@ -102,9 +113,46 @@ class DataMigration:
 
         return ids
 
+    def get_row_vals(self, col_list, table_name):
+        col_string = self.get_col_string(col_list)
+
+        if col_string:
+            query = "SELECT id, {0} from {1} limit 10;".format(col_string, table_name)
+            data = self.query_read(query)
+            data_list = data.fetchall()
+
+            return data_list
+
+    def update_query(self, table_name, new_db):
+        col_list = self.get_col_names(table_name)
+        rows = self.get_row_vals(col_list, table_name)
+
+        if col_list:
+            for row in rows:
+                query = False
+                for col in range(1, len(col_list)):
+                    if col == 0:
+                        query = "{0}={1}".format(col_list[col], row[col])
+                    else:
+                        query = "{0}, {1}={2}".format(query, col_list[col], row[col])
+
+                update_sql = UPDATE_SQL.format(table_name, query, "id={0}".format(rows[0][0]))
+                # print update_sql
+                new_db.query_write(update_sql)
+
+
     def close(self):
         self.cr.close()
         self.cr = None
+
+    def split(self, arr, size):
+        arrs = []
+        while len(arr) > size:
+            pice = arr[:size]
+            arrs.append(pice)
+            arr = arr[size:]
+        arrs.append(arr)
+        return arrs
 
 
 
