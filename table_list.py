@@ -133,7 +133,7 @@ class DataMigration:
             for row in rows:
                 query = False
                 for col in range(1, len(col_list)):
-                    if col == 0:
+                    if col == 1:
                         query = "{0}={1}".format(col_list[col], row[col])
                     else:
                         query = "{0}, {1}={2}".format(query, col_list[col], row[col])
