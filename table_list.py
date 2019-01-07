@@ -4,8 +4,10 @@ import psycopg2
 
 ALTER_TABLE = "ALTER TABLE {0}"
 ALTER_COLUMN = "ALTER COLUMN {0} drop NOT NULL"
-CMD = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3}(id) FROM stdin'"""
-DB_TRANSFER = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3} FROM stdin'"""
+# CMD = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3}(id) FROM stdin'"""
+# DB_TRANSFER = """PGPASSWORD=ramesh psql -U ramesh {0} -c 'COPY {1} TO stdout' | PGPASSWORD=ramesh psql -U ramesh {2} -c 'COPY {3} FROM stdin'"""
+CMD = """PGPASSWORD=vvti_ajax psql -U ubuntu {0} -c 'COPY {1} TO stdout' | PGPASSWORD=vvti_ajax psql -U ubuntu {2} -c 'COPY {3}(id) FROM stdin'"""
+DB_TRANSFER = """PGPASSWORD=vvti_ajax psql -U ubuntu {0} -c 'COPY {1} TO stdout' | PGPASSWORD=vvti_ajax psql -U ubuntu {2} -c 'COPY {3} FROM stdin'"""
 UPDATE_SQL = """ UPDATE {0} SET {1} WHERE {2};"""
 
 
