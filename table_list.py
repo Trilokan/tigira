@@ -125,23 +125,28 @@ class DataMigration:
 
             return data_list
 
-    def update_query(self, table_name, new_db):
-        col_list = self.get_col_names(table_name)
-        rows = self.get_row_vals(col_list, table_name)
-
+    def update_query(self, table_name, col_list, rows):
         if col_list:
             for row in rows:
                 query = False
-                for col in range(1, len(col_list)):
-                    if col == 1:
-                        query = "{0}={1}".format(col_list[col], row[col])
+                for col in range(0, len(col_list)):
+                    if col == 0:
+                        query = "{0}={1}".format(col_list[col], self.convert_type(row[col + 1]))
                     else:
-                        query = "{0}, {1}={2}".format(query, col_list[col], row[col])
+                        query = "{0}, {1}={2}".format(query, col_list[col], self.convert_type(row[col + 1]))
 
-                update_sql = UPDATE_SQL.format(table_name, query, "id={0}".format(rows[0][0]))
-                # print update_sql
-                new_db.query_write(update_sql)
+                update_sql = UPDATE_SQL.format(table_name, query, "id={0}".format(row[0]))
+                print update_sql
+                # new_db.query_write(update_sql)
 
+    def convert_type(self, data):
+        if data:
+            if isinstance(data, int):
+                return data
+            else:
+                return "'{0}'".format(str(data))
+        else:
+            return "NULL"
 
     def close(self):
         self.cr.close()
