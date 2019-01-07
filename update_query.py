@@ -17,7 +17,7 @@ new = DataMigration(database_new, user, password, host, port)
 live.authentication()
 new.authentication()
 
-live.update_query(table_name)
+live.update_query(table_name, new)
 
 new.close()
 
