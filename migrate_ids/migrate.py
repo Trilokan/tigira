@@ -111,9 +111,7 @@ class DataMigration:
         for rec in recs:
             data_list.append(rec[0])
 
-        ids = self.list_to_text(data_list)
-
-        return ids
+        return data_list
 
     def get_row_vals(self, col_list, table_name):
         col_string = self.get_col_string(col_list)
