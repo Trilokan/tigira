@@ -29,9 +29,9 @@ for table_name in tables:
         rows = live.get_row_vals(col_list, table_name)
 
         new.update_query(table_name, col_list, rows)
-
-    except:
         print table_name
+    except:
+        pass
 
     new.close()
 
