@@ -31,7 +31,8 @@ try:
     # GET id list in new db
     ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
 
-    new_ids = list(set(range(ext_from, ext_till)) - set(ids))
+    set_ids = list(set(range(ext_from, ext_till)) - set(ids))
+    new_ids = new.list_to_text(set_ids)
 
     # Update all id in new db
     new.data_copy(database_old, database_new, table_name, new_ids)
