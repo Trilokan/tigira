@@ -119,7 +119,7 @@ class DataMigration:
         col_string = self.get_col_string(col_list)
 
         if col_string:
-            query = "SELECT id, {0} from {1} where id > ext_from and id < ext_till;".format(col_string, table_name, ext_from, ext_till)
+            query = "SELECT id, {0} from {1} where id > {2} and id < {3};".format(col_string, table_name, ext_from, ext_till)
             data = self.query_read(query)
             data_list = data.fetchall()
 
