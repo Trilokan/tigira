@@ -26,17 +26,20 @@ for table_name in tables:
     live.authentication()
     new.authentication()
 
-    # Remove NOT NULL Constraints
-    new.remove_not_null(table_name)
+    try:
+        # Remove NOT NULL Constraints
+        new.remove_not_null(table_name)
 
-    # GET id list in new db
-    ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
+        # GET id list in new db
+        ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
 
-    set_ids = list(set(range(ext_from, ext_till)) - set(ids))
-    new_ids = new.list_to_text(set_ids)
+        set_ids = list(set(range(ext_from, ext_till)) - set(ids))
+        new_ids = new.list_to_text(set_ids)
 
-    # Update all id in new db
-    new.data_copy(database_old, database_new, table_name, new_ids)
+        # Update all id in new db
+        new.data_copy(database_old, database_new, table_name, new_ids)
+    except:
+        print table_name
 
     new.close()
 
