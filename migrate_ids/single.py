@@ -16,6 +16,8 @@ host = "127.0.0.1"
 port = "5432"
 
 table_name = sys.argv[1]
+ext_from = int(sys.argv[2])
+ext_till = int(sys.argv[3])
 
 live = DataMigration(database_old, user, password, host, port)
 new = DataMigration(database_new, user, password, host, port)
@@ -28,6 +30,9 @@ try:
 
     # GET id list in new db
     ids = new.get_updated_ids_list(table_name)
+
+    if ext_from and ext_till:
+        ids + range(ext_from, ext_till)
 
     # Update all id in new db
     new.data_copy(database_old, database_new, table_name, ids)
