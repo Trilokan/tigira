@@ -158,6 +158,7 @@ class DataMigration:
             if isinstance(data, int):
                 return data
             else:
+                data = str(data)
                 data = data.replace("'", "''")
                 return "'{0}'".format(str(data))
         else:
