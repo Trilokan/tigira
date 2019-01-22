@@ -154,11 +154,11 @@ class DataMigration:
                 self.query_write(update_sql)
 
     def convert_type(self, data):
-        data = data.replace("'", "''")
         if data:
             if isinstance(data, int):
                 return data
             else:
+                data = data.replace("'", "''")
                 return "'{0}'".format(str(data))
         else:
             return "NULL"
