@@ -1,7 +1,7 @@
 from migrate import DataMigration
 # from t_name import tables
 
-from table_array import tables
+from table_array_1 import tables
 
 database_old = "version_7_db"
 database_new = "version_11_db"
