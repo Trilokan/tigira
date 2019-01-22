@@ -128,7 +128,6 @@ tables = [
 'purchase_order',
 'purchase_order_line',
 'resource_resource',
-'rule_group_rel',
 'sale_order',
 'sale_order_line',
 'sale_order_line_invoice_rel',
