@@ -79,7 +79,7 @@ class DataMigration:
             if tables[0] != table:
                 query = "{0}, \n {1}".format(query, ALTER_COLUMN.format(table))
             else:
-                query = "\"{0}\"".format(ALTER_COLUMN.format(table))
+                query = "{0}".format(ALTER_COLUMN.format(table))
 
         query = "{0} \n {1}".format(ALTER_TABLE.format(table_name), query)
 
