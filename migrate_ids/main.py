@@ -1,3 +1,4 @@
+import sys
 from migrate import DataMigration
 from table_array import tables
 
@@ -16,7 +17,8 @@ host = "127.0.0.1"
 port = "5432"
 
 # table_name = "account_account"
-
+ext_from = int(sys.argv[1])
+ext_till = int(sys.argv[2])
 
 for table_name in tables:
     live = DataMigration(database_old, user, password, host, port)
@@ -29,10 +31,12 @@ for table_name in tables:
         new.remove_not_null(table_name)
 
         # GET id list in new db
-        ids = new.get_updated_ids_list(table_name)
+        ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
+
+        new_ids = list(set(range(ext_from, ext_till)) - set(ids))
 
         # Update all id in new db
-        new.data_copy(database_old, database_new, table_name, ids)
+        new.data_copy(database_old, database_new, table_name, new_ids)
 
     except:
         new.table_transfer(database_old, database_new, table_name)

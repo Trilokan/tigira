@@ -86,11 +86,11 @@ class DataMigration:
         self.query_write(query)
         return True
 
-    def data_copy(self, source_db, dest_db, table_name, not_in_id):
+    def data_copy(self, source_db, dest_db, table_name, in_list):
         "psql source_database -c 'COPY table TO stdout' | psql target_database -c 'COPY table FROM stdin'"
 
-        if not_in_id:
-            query = "(SELECT id from {0} where id not in ({1}))".format(table_name, not_in_id)
+        if in_list:
+            query = "(SELECT id from {0} where id in ({1}))".format(table_name, in_list)
         else:
             query = "(SELECT id from {0})".format(table_name)
 
@@ -101,8 +101,8 @@ class DataMigration:
         cmd = DB_TRANSFER.format(source_db, table_name, dest_db, table_name)
         os.system(cmd)
 
-    def get_updated_ids_list(self, table_name):
-        query = "SELECT id from {0}".format(table_name)
+    def get_updated_ids_list(self, table_name, ext_from, ext_till):
+        query = "SELECT id from {0} where id > {1} and id < {2}".format(table_name, ext_from, ext_till)
         h = self.query_read(query)
 
         recs = h.fetchall()
