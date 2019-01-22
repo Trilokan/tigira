@@ -31,7 +31,7 @@ for table_name in tables:
 
         new.update_query(table_name, col_list, rows)
     except:
-        pass
+        print table_name
 
     new.close()
 
