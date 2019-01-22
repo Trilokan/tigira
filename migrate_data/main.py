@@ -26,8 +26,8 @@ for table_name in tables:
     new.authentication()
 
     try:
-        col_list = new.get_col_names(table_name, ext_from, ext_till)
-        rows = live.get_row_vals(col_list, table_name)
+        col_list = new.get_col_names(table_name)
+        rows = live.get_row_vals(col_list, table_name, ext_from, ext_till)
 
         new.update_query(table_name, col_list, rows)
     except:
