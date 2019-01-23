@@ -1,1 +1,3 @@
 arul_hr_leave_master
+credit_limit_group
+'crm_case_channel',

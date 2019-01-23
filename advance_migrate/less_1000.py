@@ -40,7 +40,6 @@ tables = [
 'arul_hr_section',
 'crm_application',
 'crm_case_categ',
-'crm_case_channel',
 'crm_case_resource_type',
 'crm_case_section',
 'crm_case_stage',
