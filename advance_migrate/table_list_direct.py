@@ -1,7 +1,6 @@
 tables = [
 
 'account_account',
-'account_account_financial_report_type',
 'account_account_template',
 'account_account_type',
 'account_balance_report',
@@ -15,7 +14,6 @@ tables = [
 'account_fiscalyear',
 'account_invoice',
 'account_invoice_line',
-'account_invoice_line_tax',
 'account_invoice_tax',
 'account_journal',
 'account_move',
@@ -130,7 +128,6 @@ tables = [
 'sale_order',
 'sale_order_line',
 'sale_shop',
-'service_entry_employee_ref',
 'shift_adjustment',
 'shift_change',
 'shift_group',
@@ -181,7 +178,6 @@ tables = [
 'tpt_gate_in_pass_line',
 'tpt_gate_out_pass',
 'tpt_gate_out_pass_line',
-'tpt_gls_account_ref',
 'tpt_good_return_request',
 'tpt_hr_attendance',
 'tpt_hr_payroll_approve_reject',
