@@ -5,7 +5,6 @@ tables = [
 'arul_hr_employee_action_history',
 'arul_hr_monthly_work_schedule',
 'arul_hr_payroll_employee_structure',
-'arul_hr_punch_in_out',
 'hr_employee',
 'hr_family',
 'hr_identities_attachment',

@@ -1,3 +1,16 @@
+# less 1000 Error
+
 arul_hr_leave_master
 credit_limit_group
-'crm_case_channel',
+crm_case_channel
+crm_lead
+decimal_precision
+fetchmail_server
+food_subsidy
+hr_qualification_attachment
+tpt_canteen_book_type
+tpt_month
+
+
+# less 5k error
+arul_hr_punch_in_out
