@@ -89,7 +89,7 @@ class DataMigration:
     def data_copy(self, source_db, dest_db, table_name, in_list):
         "psql source_database -c 'COPY table TO stdout' | psql target_database -c 'COPY table FROM stdin'"
 
-        if in_list != " ":
+        if in_list != "":
             if in_list:
                 query = "(SELECT id from {0} where id in ({1}))".format(table_name, in_list)
             else:
