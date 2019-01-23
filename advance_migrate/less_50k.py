@@ -17,7 +17,6 @@ tables = [
 'purchase_order_line',
 'sale_order',
 'sale_order_line',
-'sale_order_line_invoice_rel',
 'stock_inventory_line',
 'stock_picking',
 'stock_production_lot',

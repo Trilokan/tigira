@@ -4,8 +4,6 @@ tables = [
 
 'account_account',
 'arul_hr_payroll_employee_structure',
-'sale_order_line_invoice_rel',
-'stock_inventory_move_rel',
 'tpt_bank_reconciliation_line',
 'tpt_batch_allotment',
 'tpt_batch_request',

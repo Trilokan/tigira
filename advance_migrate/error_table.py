@@ -14,3 +14,4 @@ tpt_month
 
 # less 5k error
 arul_hr_punch_in_out
+hr_qualification_attachment
