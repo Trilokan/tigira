@@ -19,25 +19,19 @@ table_name = sys.argv[1]
 ext_from = sys.argv[2]
 ext_till = sys.argv[3]
 
-for i in range(0, 100):
-    for j in range(0, 100):
-        for z in range(0, 100):
-            ext_from = int(ext_from) + 100
-            ext_till = int(ext_till) + 100
+live = DataMigration(database_old, user, password, host, port)
+new = DataMigration(database_new, user, password, host, port)
+live.authentication()
+new.authentication()
 
-            live = DataMigration(database_old, user, password, host, port)
-            new = DataMigration(database_new, user, password, host, port)
-            live.authentication()
-            new.authentication()
+col_list = new.get_col_names(table_name)
 
-            col_list = new.get_col_names(table_name)
+for col in col_list:
+    col_status = live.check_col_in_db(col, table_name)
+    if col_status:
+        rows = live.get_col_vals(col, table_name, ext_from, ext_till)
+        new.advance_update_query(table_name, col, rows)
 
-            for col in col_list:
-                col_status = live.check_col_in_db(col, table_name)
-                if col_status:
-                    rows = live.get_col_vals(col, table_name, ext_from, ext_till)
-                    new.advance_update_query(table_name, col, rows)
-
-            new.close()
+new.close()
 
 
