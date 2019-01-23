@@ -30,10 +30,12 @@ for table_name in tables:
         # Remove NOT NULL Constraints
         new.remove_not_null(table_name)
 
-        # GET id list in new db
-        ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
+        # GET id list in db
+        actual_ids = live.get_updated_ids_list(table_name, ext_from, ext_till)
+        updated_ids = new.get_updated_ids_list(table_name, ext_from, ext_till)
 
-        set_ids = list(set(range(ext_from, ext_till)) - set(ids))
+        set_ids = list(set(actual_ids) - set(updated_ids))
+
         new_ids = new.list_to_text(set_ids)
 
         # Update all id in new db
