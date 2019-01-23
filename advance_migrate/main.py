@@ -23,6 +23,7 @@ ext_till = sys.argv[2]
 # table_name = "hr_contract_type"
 
 for table_name in tables:
+    print table_name
     live = DataMigration(database_old, user, password, host, port)
     new = DataMigration(database_new, user, password, host, port)
     live.authentication()
