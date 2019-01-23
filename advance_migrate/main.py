@@ -1,3 +1,4 @@
+import sys
 from migrate import DataMigration
 # from t_name import tables
 
@@ -16,6 +17,9 @@ password = "vvti_ajax"
 host = "127.0.0.1"
 port = "5432"
 
+ext_from = sys.argv[1]
+ext_till = sys.argv[2]
+
 # table_name = "hr_contract_type"
 
 for table_name in tables:
@@ -29,9 +33,10 @@ for table_name in tables:
     for col in col_list:
         col_status = live.check_col_in_db(col, table_name)
         if col_status:
-            rows = live.get_col_vals(col, table_name)
+            rows = live.get_col_vals(col, table_name, ext_from, ext_till)
             new.advance_update_query(table_name, col, rows)
 
     new.close()
+
 
 
