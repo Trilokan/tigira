@@ -126,7 +126,7 @@ class DataMigration:
             return data_list
 
     def get_col_vals(self, col_name, table_name, ext_from, ext_till):
-        query = "SELECT id, {0} from {1} where id > {2} and id < {3}".format(col_name, table_name, ext_from, ext_till)
+        query = 'SELECT id, "{0}" from {1} where id > {2} and id < {3}'.format(col_name, table_name, ext_from, ext_till)
         data = self.query_read(query)
         data_list = data.fetchall()
 
