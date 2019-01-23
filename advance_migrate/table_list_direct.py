@@ -92,4 +92,6 @@ tables = [
 'tpt_purchase_quotation_line',
 'tpt_quality_verification',
 
+'arul_hr_employee_attendance_details'
+
 ]

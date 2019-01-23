@@ -37,6 +37,7 @@ tables = [
 'arul_hr_capture_work_shift',
 'arul_hr_designation',
 'arul_hr_employee_action_history',
+'arul_hr_employee_attendance_details',
 'arul_hr_employee_leave_details',
 'arul_hr_holiday_special',
 'arul_hr_leave_master',
