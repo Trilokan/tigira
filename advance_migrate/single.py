@@ -22,8 +22,8 @@ ext_till = sys.argv[3]
 for i in range(0, 100):
     for j in range(0, 100):
         for z in range(0, 100):
-            ext_from = ext_from + 100
-            ext_till = ext_till + 100
+            ext_from = int(ext_from) + 100
+            ext_till = int(ext_till) + 100
 
             live = DataMigration(database_old, user, password, host, port)
             new = DataMigration(database_new, user, password, host, port)
