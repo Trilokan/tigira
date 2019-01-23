@@ -27,7 +27,6 @@ tables = [
 'arul_hr_capture_work_shift',
 'arul_hr_designation',
 'arul_hr_holiday_special',
-'arul_hr_leave_master',
 'arul_hr_leave_types',
 'arul_hr_payroll_area',
 'arul_hr_payroll_contribution_parameters',
