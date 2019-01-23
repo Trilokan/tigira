@@ -38,7 +38,6 @@ tables = [
 'arul_hr_payroll_structure_configuration',
 'arul_hr_payroll_sub_area',
 'arul_hr_section',
-'credit_limit_group',
 'crm_application',
 'crm_case_categ',
 'crm_case_channel',
