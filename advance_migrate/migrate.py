@@ -138,9 +138,9 @@ class DataMigration:
                 query = False
                 for col in range(0, len(col_list)):
                     if col == 0:
-                        query = "{0}={1}".format(col_list[col], self.convert_type(row[col + 1]))
+                        query = '"{0}"={1}'.format(col_list[col], self.convert_type(row[col + 1]))
                     else:
-                        query = "{0}, {1}={2}".format(query, col_list[col], self.convert_type(row[col + 1]))
+                        query = '{0}, "{1}"={2}'.format(query, col_list[col], self.convert_type(row[col + 1]))
 
                 update_sql = UPDATE_SQL.format(table_name, query, "id={0}".format(row[0]))
                 # print update_sql
