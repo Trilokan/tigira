@@ -28,7 +28,6 @@ ext_till = sys.argv[2]
 
 for table_name in tables:
     print table_name
-    logging.info(str(table_name))
     try:
         live = DataMigration(database_old, user, password, host, port)
         new = DataMigration(database_new, user, password, host, port)
@@ -43,7 +42,7 @@ for table_name in tables:
                 rows = live.get_col_vals(col, table_name, ext_from, ext_till)
                 new.advance_update_query(table_name, col, rows)
     except:
-        logging.info("Error {0}".format(str(table_name)))
+        logging.info("Error-->- {0}".format(str(table_name)))
 
     new.close()
 
