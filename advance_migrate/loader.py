@@ -9,4 +9,4 @@ for i in range(1, 1000):
     os.system(cmd)
     start = start + 100
     end = end + 100
-    time.sleep(500)
+    time.sleep(300)
